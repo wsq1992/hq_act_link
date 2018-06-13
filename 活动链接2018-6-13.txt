@@ -1,0 +1,13 @@
+小猪活动
+
+测试环境
+产品名称---横琴宜家年金保险
+http://hengqinlife-test.e-hqins.com/moneyProductDetail?productId=10037&agent=WX00000003&activity=eyJhY3Rpdml0eUlkIjoicDMwNjE4MDYxMSIsImNoYW5uZWxObyI6IjMwNiIsInNoYXJlSWQiOm51bGwsInNoYXJlRnJvbSI6bnVsbH0%3D
+
+uat环境
+产品名称---横琴宜家年金保险
+http://hengqinlife-uat.e-hqins.com/moneyProductDetail?productId=10037&agent=WX00000003&activity=eyJhY3Rpdml0eUlkIjoicDMwNjE4MDYxMSIsImNoYW5uZWxObyI6IjMwNiIsInNoYXJlSWQiOm51bGwsInNoYXJlRnJvbSI6bnVsbH0%3D
+
+生产环境
+产品名称---横琴宜家年金保险
+http://wechat.e-hqins.com/moneyProductDetail?productId=10037&agent=WX00000003&activity=eyJhY3Rpdml0eUlkIjoicDMwNjE4MDYxMSIsImNoYW5uZWxObyI6IjMwNiIsInNoYXJlSWQiOm51bGwsInNoYXJlRnJvbSI6bnVsbH0%3D

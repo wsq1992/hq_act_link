@@ -1,20 +1,17 @@
 var path  = require('path');
+var fs  = require('fs');
 var host = 'http://hengqinlife-test.e-hqins.com';
 var hostMap = {
   '测试环境':'http://hengqinlife-test.e-hqins.com',
   'uat环境':'http://hengqinlife-uat.e-hqins.com',
   '生产环境':'http://wechat.e-hqins.com'
 }
-var pagePath = '/productDetailNew';
-// var params = {
-//  activity:'eyJhY3Rpdml0eUlkIjoiMzA2emhsdCIsImNoYW5uZWxObyI6IjMwNiIsInNoYXJlSWQiOm51bGwsInNoYXJlRnJvbSI6bnVsbH0=',
-//  agent:'WX00000003'
-// };
 
 var datalist  = require('./config.js')
+
 /**
 @params Object{ param1:value ,param1:value }
-@return  '?param1=value&param1=value'
+@return  'param1=value&param1=value'
 */
 function queryStringToParse(params){
   let param = [];
@@ -25,64 +22,67 @@ function queryStringToParse(params){
     let str = `${i}=${params[i]}`
     param.push(str)
   }
-  return `?${param.join('&')}`
+  return `${param.join('&')}`
 }
 
+/*生成活动URL
+@param host Sting 'http://hengqinlife-test.e-hqins.com'
+@param pagePath  String '/productDetialNew
+@params Object  { param1:value ,param1:value }
+@return String url  'http://hengqinlife-test.e-hqins.com/productDetialNew?param1=value&param1=value'
+*/
 function createLink(host ,pagePath , params){
   let param = queryStringToParse(params)
-  let link = `${host}${pagePath}${param}`
+  let link = `${host}${pagePath}?${param}`
   return link
 }
 
-
 //生产一种host所有产品的链接
-function create(opt,host,EVNName){
-  let title = opt.title
-  let list  = opt.productList
-  let activity = opt.activity
-  let path = opt.path
-  let params= {
-    productId:'',
-    activity:activity,
-    agent:opt.agent
-  }
-  console.log('\n' + EVNName)
+function createHostLinks(opt,host,EVNName){
+  let length_str = '';
+  let title = opt.title ;
+  let list  = opt.productList;
+  let activity = opt.activity;
+  let path = opt.path;
+  let params = opt.params;
+  length_str += EVNName + '\n' ;
   list.forEach((item)=>{
+    let url = ''
     params.productId = item.productId
-    console.log(item.name)
-    console.log(createLink(host,path,params))
+    url = createLink(host,path,params)
+    length_str += '产品名称---' + item.name + '\n';
+    length_str += url + '\n';
   })
+  return length_str
 }
-
-/*
-function generate(hostMap){
-  let _config = config.ZHLT;
-  let strs = '';
-  strs = _config.title + '\n'
-  console.log(_config.title)
-  for(let i in hostMap){
-    let host = hostMap[i];
-    let name = i ;
-    create(_config,host,i);
-  }
-}
-
-
-generate(hostMap)*/
 
 //生成所有活动链接
 function generateAllLink(arr,hostMap){
+  var logs = '';
   arr.forEach( (item)=>{
-    let strs = ''; strs = item.title + '\n'
-    console.log(item.title)
+    logs += item.title + '\n'
     for(let i in hostMap){
       let host = hostMap[i];
       let name = i ;
-      create(item,host,name);
+      logs += '\n' + createHostLinks(item,host,name) ;
+    }
+  })
+  // console.log(logs)
+  return logs
+}
+
+writeIntxt(generateAllLink(datalist,hostMap))
+
+function writeIntxt(str){
+  let fileName = '活动链接' + getNowDate()
+  fs.writeFile(fileName +'.txt',str,function(err){
+    if(err){
+      return console.error(err)
     }
   })
 }
 
-generateAllLink(datalist,hostMap)
-
-// console.log(createLink(host,pagePath,params))
+function getNowDate(){
+  let myDate  = new Date()
+  return myDate.toLocaleDateString()
+}

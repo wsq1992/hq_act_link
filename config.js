@@ -1,46 +1,16 @@
 const list = [{
-  title:'多媒体中心',
-  activity:'eyJhY3Rpdml0eUlkIjoiQklUMjAxNzEyMDciLCJjaGFubmVsTm8iOiIwNTA1MTYiLCJzaGFyZUlkIjpudWxsLCJzaGFyZUZyb20iOm51bGx9',
+  title:'小猪活动',
   productList:[{
-    name:'优爱宝终身寿险',
-    productId:'10027'
-  },{
-    name:'优护宝终身意外险',
-    productId:'10029'
-  },{
-    name:'优护宝定期意外伤害保险',
-    productId:'10020'
-  },{
-    name:'优爱宝定期寿险',
-    productId:'10019'
-  },
-  {
-    name:'百万乐途两全保险',
-    productId:'10018'
-  },
-  {
-    name:'优康保终身重大疾病保险',
-    productId:'10025'
-  },
-  {
-    name:'海陆空交通意外险',
-    productId:'10035'
-  },
-  {
-    name:'超值自驾保',
-    productId:'10034'
-  },
-   {
-    name:'百万医疗险',
-    productId:'10021'
+    name:'横琴宜家年金保险',
+    productId:'10037'
   }],
-  path:'/productDetailNew',
-  agent:'WX00000003'
+  path:'/moneyProductDetail',
+  params:{
+    productId:'',
+    agent:'WX00000003',
+    activity:'eyJhY3Rpdml0eUlkIjoicDMwNjE4MDYxMSIsImNoYW5uZWxObyI6IjMwNiIsInNoYXJlSWQiOm51bGwsInNoYXJlRnJvbSI6bnVsbH0=',
+  }
 }]
-
-
-
-
 
 module.exports = list
 
